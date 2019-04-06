@@ -6,8 +6,8 @@ The store endpoint validates the email and persists to disk if ok.
 
 The bot is redirected to denied.html and the user is redirected to thankyou.html
 
-```
-<form c id="emailform" method="POST" action="http://localhost:8080/store">
+```html
+<form id="emailform" method="POST" action="http://localhost:8080/store">
     <!-- Populated by Captcha v3 -->
     <input type="hidden" id="g-recaptcha-response" name="token"  required>
     <input type="hidden" name="ok" value="https://sportybiz.eu/thankyou.html">
@@ -18,3 +18,24 @@ The bot is redirected to denied.html and the user is redirected to thankyou.html
     </button>
 </form>
 ```
+
+## Files not in the repository
+
+To compile you need to add a directory called private which is 
+ignored by git containing the file called secrets.json containing
+
+```json
+{
+    "captchakey" : "<INSERT SECRET API KEY HERE"
+}
+```
+
+## Compilation
+
+The code is built using pakr which includes the secrets file resulting
+in no dependencies outside the binary.
+
+## Running
+
+The user running the server needs write access to the current directory
+
