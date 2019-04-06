@@ -7,6 +7,8 @@ The store endpoint validates the email and persists to disk if ok.
 The bot is redirected to denied.html and the user is redirected to thankyou.html
 
 ```html
+<script src="https://www.google.com/recaptcha/api.js?render=INSERT-API-KEY-HEREonload=onloadCallback"></script>
+
 <form id="emailform" method="POST" action="http://localhost:8080/store">
     <!-- Populated by Captcha v3 -->
     <input type="hidden" id="g-recaptcha-response" name="token"  required>
@@ -18,6 +20,25 @@ The bot is redirected to denied.html and the user is redirected to thankyou.html
     </button>
 </form>
 ```
+
+
+```javascript
+var onloadCallback = function() {
+    grecaptcha.ready(function() {
+        console.log("READY")
+        grecaptcha.execute('INSERT-API-KEY-HERE', 
+            {action: 'homepage'})
+            .then(function(token) {
+                // add token value to form
+                document.getElementById('g-recaptcha-response').value = token;
+        });
+    });
+};
+```
+
+
+
+
 
 ## Files not in the repository
 
