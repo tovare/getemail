@@ -16,6 +16,7 @@ type Secrets struct {
 	CaptchaAPIKey string `json:"captchakey"`
 }
 
+// API secrets initialized by main
 var secrets Secrets
 
 // CaptchaResponse -- structure returned by google
@@ -54,9 +55,12 @@ func store(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	// Get secret API key from secrets file. This will be embedded
+	// into the executable.
 	box := packr.New("My Box", "./private")
 	str, _ := box.Find("secrets.json")
 	json.Unmarshal(str, &secrets)
+	// Open the output file.
 
 	http.HandleFunc("/store", store)
 	log.Println("Running on 8080")
