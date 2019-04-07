@@ -1,0 +1,8 @@
+[Unit]
+Description=get email
+
+[Service]
+ExecStart=/home/tovare/getemail/linux-getemail
+
+[Install]
+WantedBy=multi-user.target
