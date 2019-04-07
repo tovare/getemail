@@ -61,3 +61,25 @@ GOOS=darwin GOARCH=amd64 packr build && mv ./getemail ./releases/darwin-getemail
 ## Running
 
 The user running the server needs write access to the current directory
+
+### Installing on ubuntu
+
+getemail.service is put in /etc/systemd/system
+getemail.sh is put in /etc/init.d
+
+Location of the binary is in both files.
+
+### Proxy with nginx
+
+sites-available/
+
+```nginx 
+   location /store {
+        add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+        proxy_pass http://localhost:8020;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_buffering off;
+    }
+```
