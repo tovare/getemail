@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/gobuffalo/packr/v2"
@@ -49,9 +50,10 @@ func store(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(result, &captcha)
 	if captcha.Success {
 		http.Redirect(w, r, okurl, 301)
-		log.Println(email)
+		log.Printf("%v, ok", email)
 	} else {
 		http.Redirect(w, r, failedurl, 301)
+		log.Printf("%v, %v", email, strings.Join(captcha.ErrorCodes, " "))
 	}
 }
 

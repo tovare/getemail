@@ -3,6 +3,8 @@ Description=get email
 
 [Service]
 ExecStart=/home/tovare/getemail/linux-getemail
+WorkingDirectory=/home/tovare/getemail
+
 
 [Install]
 WantedBy=multi-user.target
