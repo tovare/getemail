@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"time"
 
 	"github.com/gobuffalo/packr/v2"
@@ -61,8 +62,13 @@ func main() {
 	str, _ := box.Find("secrets.json")
 	json.Unmarshal(str, &secrets)
 	// Open the output file.
-
+	fh, err := os.OpenFile("epost.txt", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.SetOutput(fh)
+	defer fh.Close()
 	http.HandleFunc("/store", store)
-	log.Println("Running on 8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Println("Running on 8020")
+	log.Fatal(http.ListenAndServe(":8020", nil))
 }

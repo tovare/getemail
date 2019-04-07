@@ -56,6 +56,8 @@ ignored by git containing the file called secrets.json containing
 The code is built using pakr which includes the secrets file resulting
 in no dependencies outside the binary.
 
+
+
 ## Running
 
 The user running the server needs write access to the current directory

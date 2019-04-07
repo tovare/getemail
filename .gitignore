@@ -1,6 +1,7 @@
 # Secrets
 
 private/secrets.json
+epost.txt
 
 # Binaries for programs and plugins
 *.exe
