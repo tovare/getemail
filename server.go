@@ -53,7 +53,8 @@ func store(w http.ResponseWriter, r *http.Request) {
 		log.Printf("%v, ok", email)
 	} else {
 		http.Redirect(w, r, failedurl, 301)
-		log.Printf("%v, %v", email, strings.Join(captcha.ErrorCodes, " "))
+		log.Printf("%v, %v, key=%v", email,
+			strings.Join(captcha.ErrorCodes, " "), secrets.CaptchaAPIKey)
 	}
 }
 
