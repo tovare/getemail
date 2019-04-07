@@ -52,9 +52,9 @@ The code is built using pakr which includes the secrets file resulting
 in no dependencies outside the binary.
 
 ```bash
-GOOS=darwin GOARCH=amd64 packr build && mv ./getemail ./releases/darwin-getemail \
-  && GOOS=linux GOARCH=amd64 packr build && mv ./getemail ./releases/linux-getemail \
-  && GOOS=windows GOARCH=386 packr build && mv ./getemail.exe ./releases/getemail.exe \
+GOOS=darwin GOARCH=amd64 packr2 build && mv ./getemail ./releases/darwin-getemail \
+  && GOOS=linux GOARCH=amd64 packr2 build && mv ./getemail ./releases/linux-getemail \
+  && GOOS=windows GOARCH=386 packr2 build && mv ./getemail.exe ./releases/getemail.exe \
   && packr clean
 ```
 

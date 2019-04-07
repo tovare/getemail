@@ -61,8 +61,12 @@ func store(w http.ResponseWriter, r *http.Request) {
 func main() {
 	// Get secret API key from secrets file. This will be embedded
 	// into the executable.
-	box := packr.New("My Box", "./private")
-	str, _ := box.Find("secrets.json")
+	box := packr.New("box", "./private")
+	str, err := box.Find("secrets.json")
+	if err != nil {
+		log.Printf("Contents of box: %v", strings.Join(box.List(), ","))
+		log.Fatal(err)
+	}
 	json.Unmarshal(str, &secrets)
 	// Open the output file.
 	fh, err := os.OpenFile("epost.txt", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0600)
